@@ -10,18 +10,21 @@ import {
   User,
   Menu,
   X,
-  Heart
+ShoppingBag,
+  Shield,
+  Truck,
+  RefreshCw,
+
 } from "lucide-react"
 import { useCartStore } from "@/lib/store/cart-store"
 import Logo from "@/public/images/kosi-logo.png"
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Shop", href: "/shop" },
-  { name: "Products", href: "/products" },
-  { name: "Blog", href: "/blog" },
-  { name: "Pages", href: "/pages" },
-  { name: "Contact", href: "/contact" }
+  { name: "Shop", href: "#shop" },
+  { name: "Blog", href: "/" },
+  { name: "About", href: "/" },
+  { name: "Contact", href: "/" }
 ]
 
 export default function Header() {
@@ -69,8 +72,8 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
-          : 'bg-white'
+        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
+        : 'bg-white'
         }`}
     >
       <div className="container py-4 lg:py-6">
@@ -143,8 +146,16 @@ export default function Header() {
                     {cartItems.length === 0 ? (
                       <div className="px-6 py-8 text-center">
                         <ShoppingCart className="mx-auto text-4xl text-gray-300 mb-4" />
-                        <p className="text-gray-500">Your cart is empty</p>
-                        <p className="text-sm text-gray-400 mt-1">Add items to get started</p>
+                        <p className="text-gray-500 font-medium mb-2">Your cart is empty</p>
+                        <p className="text-sm text-gray-400 mb-6">Add some items to get started</p>
+                        <Link
+                          href="/products"
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105"
+                          onClick={() => setIsCartOpen(false)}
+                        >
+                          <ShoppingBag className="w-4 h-4" />
+                          Start Shopping
+                        </Link>
                       </div>
                     ) : (
                       <div className="px-4 py-4">
@@ -216,17 +227,45 @@ export default function Header() {
                         </span>
                       </div>
 
-                      <div className="space-y-2">
-                        <button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-colors duration-200">
-                          Checkout
-                        </button>
+                      <div className="space-y-3">
                         <Link
-                          href="/cart"
-                          className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-2 rounded-lg font-medium transition-colors duration-200 text-center"
+                          href="/checkout"
+                          className="block w-full bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg text-center"
                           onClick={() => setIsCartOpen(false)}
                         >
-                          View Cart
+                          Checkout Now
                         </Link>
+                        <Link
+                          href="/cart"
+                          className="block w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-2 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 text-center"
+                          onClick={() => setIsCartOpen(false)}
+                        >
+                          View Full Cart
+                        </Link>
+                      </div>
+
+                      {/* Trust badges in cart */}
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <div className="grid grid-cols-3 gap-2 text-center">
+                          <div className="flex flex-col items-center">
+                            <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mb-1">
+                              <Shield className="w-3 h-3 text-green-600" />
+                            </div>
+                            <span className="text-xs text-gray-600">Secure</span>
+                          </div>
+                          <div className="flex flex-col items-center">
+                            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mb-1">
+                              <Truck className="w-3 h-3 text-blue-600" />
+                            </div>
+                            <span className="text-xs text-gray-600">Free Shipping</span>
+                          </div>
+                          <div className="flex flex-col items-center">
+                            <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mb-1">
+                              <RefreshCw className="w-3 h-3 text-purple-600" />
+                            </div>
+                            <span className="text-xs text-gray-600">Easy Returns</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
