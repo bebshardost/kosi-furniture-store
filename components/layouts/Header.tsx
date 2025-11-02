@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { 
-  Search, 
-  ShoppingCart, 
-  Trash2, 
-  User, 
-  Menu, 
+import {
+  Search,
+  ShoppingCart,
+  Trash2,
+  User,
+  Menu,
   X,
   Heart
 } from "lucide-react"
@@ -29,7 +29,7 @@ export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  
+
   const cartRef = useRef<HTMLDivElement>(null)
 
   // Handle scroll effect
@@ -67,22 +67,21 @@ export default function Header() {
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
 
   return (
-    <header 
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
           : 'bg-white'
-      }`}
+        }`}
     >
       <div className="container py-4 lg:py-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="nav-logo flex-shrink-0">
             <Link href="/" className="block transition-transform hover:scale-105 duration-200">
-              <Image 
-                className="h-8 md:h-10 w-auto" 
-                src={Logo} 
-                alt="Kosi - Premium Furniture Store" 
+              <Image
+                className="h-8 md:h-10 w-auto"
+                src={Logo}
+                alt="Kosi - Premium Furniture Store"
                 width={120}
                 height={40}
                 priority
@@ -95,7 +94,7 @@ export default function Header() {
             <ul className="flex items-center space-x-8 xl:space-x-12">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     className="relative font-secondary font-medium text-primary hover:text-secondary transition-colors duration-300 group"
                     href={link.href}
                   >
@@ -116,8 +115,8 @@ export default function Header() {
 
             {/* Cart Icon with Dropdown */}
             <div className="relative" ref={cartRef}>
-              <button 
-                onClick={() => setIsCartOpen(!isCartOpen)} 
+              <button
+                onClick={() => setIsCartOpen(!isCartOpen)}
                 className="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
               >
                 <ShoppingCart className="text-primary w-5 h-5" />
@@ -153,9 +152,9 @@ export default function Header() {
                           <div key={item.id} className={`flex items-center gap-4 py-4 ${index !== cartItems.length - 1 ? 'border-b border-gray-100' : ''}`}>
                             {/* Product Image */}
                             <div className="flex-shrink-0">
-                              <Image 
-                                src={item.image} 
-                                alt={item.title} 
+                              <Image
+                                src={item.image}
+                                alt={item.title}
                                 width={64}
                                 height={64}
                                 className="w-16 h-16 object-cover rounded-lg border border-gray-200"
@@ -192,7 +191,7 @@ export default function Header() {
                                   <span className="text-primary font-bold text-sm w-6 h-6 flex items-center justify-center">+</span>
                                 </button>
                               </div>
-                              
+
                               <button
                                 className="p-1 hover:bg-red-50 rounded-lg text-red-500 hover:text-red-700 transition-colors duration-200"
                                 onClick={() => removeFromCart(item.id)}
@@ -216,17 +215,18 @@ export default function Header() {
                           ${totalPrice.toFixed(2)}
                         </span>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <button className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-colors duration-200">
                           Checkout
                         </button>
-                        <button 
-                          className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-2 rounded-lg font-medium transition-colors duration-200"
+                        <Link
+                          href="/cart"
+                          className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-2 rounded-lg font-medium transition-colors duration-200 text-center"
                           onClick={() => setIsCartOpen(false)}
                         >
                           View Cart
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -240,7 +240,7 @@ export default function Header() {
             </button>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="lg:hidden p-2 rounded-lg bg-primary hover:bg-primary/90 text-white transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(true)}
             >
@@ -256,10 +256,10 @@ export default function Header() {
           <div className="fixed right-0 top-0 h-full w-80 max-w-full bg-white shadow-2xl">
             {/* Mobile Menu Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <Image 
-                className="h-8 w-auto" 
-                src={Logo} 
-                alt="Kosi" 
+              <Image
+                className="h-8 w-auto"
+                src={Logo}
+                alt="Kosi"
                 width={80}
                 height={32}
               />
