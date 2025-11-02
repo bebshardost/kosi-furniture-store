@@ -68,7 +68,7 @@ export default function TopPicks() {
   const displayedProducts = filteredProducts.slice(0, visibleProducts)
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50/50 to-white relative overflow-hidden">
+    <section id="shop" className="py-16 md:py-24 bg-gradient-to-b from-gray-50/50 to-white relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none translate-x-48 -translate-y-48"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none -translate-x-48 translate-y-48"></div>

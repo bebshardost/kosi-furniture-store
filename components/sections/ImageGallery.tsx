@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import { Heart, Eye, Share2, X } from "lucide-react"
 import FooterItem1 from "@/public/images/footerItem1.png"
 import FooterItem2 from "@/public/images/footerItem2.png"
@@ -12,7 +12,7 @@ import FooterItem6 from "@/public/images/footerItem6.png"
 
 interface GalleryItem {
   id: number
-  src: any
+  src: StaticImageData
   title: string
   category: string
   description: string
